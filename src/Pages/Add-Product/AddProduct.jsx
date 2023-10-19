@@ -12,8 +12,8 @@ const addInfo =[
         placeholder : 'enter image url'
     },
     {
-        name:'brand',
-        placeholder : 'enter brand name'
+        name:'title',
+        placeholder : 'enter product title'
     },
     {
         name:'category',
@@ -34,9 +34,37 @@ const addInfo =[
 ]
 
 const AddProduct = () => {
+    const handleAddProduct=(e)=>{
+        e.preventDefault()
+        const form = e.target;
+        const email = form.email.value
+        const photo = form.image.value
+        const title = form.title.value;
+        const brand = form.category.value
+        const price = form.price.value
+        const description = form.shortDes.value
+        const rating = form.rating.value
+
+        const prodInfo ={email,photo,title,brand,price,description,rating}
+
+        console.log(prodInfo);
+        fetch('http://localhost:5000/products',{
+            method:"POST",
+          headers:{
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(prodInfo)
+        })
+        .then(res=>res.json())
+        .then(data=> {
+            if(data.insertedId){
+                alert('product added')
+            }
+            console.log(data)})
+    }
   return (
     <div className='max-w-7xl mx-auto lg:px-7 flex items-center justify-center px-5 md:my-20 my-5'>
-        <form className='w-full text-center'>
+        <form onSubmit={handleAddProduct} className='w-full text-center'>
             {
                 addInfo.map((info, idx)=><InputField key={idx} info={info}/>)
             }

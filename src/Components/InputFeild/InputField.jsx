@@ -1,7 +1,7 @@
 
 function InputField({info}) {
     const {name, placeholder, type} = info
-    console.log(info);
+    // console.log(info);
   return (
     <div className="max-w-full mb-2">
       <input
