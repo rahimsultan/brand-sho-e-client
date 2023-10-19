@@ -12,7 +12,7 @@ import 'swiper/css/pagination';
 // import required modules
 import { Navigation, Pagination } from 'swiper/modules';
 
-const Gucci = () => {
+const BrandDetails = () => {
 
     const [products, setProducts] = useState([])
     const [filteredData, setFilteredData] = useState([])
@@ -20,18 +20,20 @@ const Gucci = () => {
     const data = useLoaderData()
 
     const root = useLocation()
-    const path = root.pathname.replace('/', '')
+    const path = root.pathname.replace('/brand/', '')
 
     useEffect(()=>{
         setProducts(data.products)
 
-        const find = products.filter(product=> product.brand_name.toLowerCase() === path)
+        const find = products.filter(product=> product.brand_name.includes(path))
         setFilteredData(find)
     },[products])
 
+    console.log(path);
+
   return (
     <div className='max-w-7xl mx-auto px-5 lg:px-8'>
-        <h2 className='text-4xl font-bold text-center my-8'>Welcome to Adidas Page</h2>
+        <h2 className='text-4xl font-bold text-center my-8'>Welcome to {path} Page</h2>
         <div>
         <Swiper
         slidesPerView={1}
@@ -68,4 +70,4 @@ const Gucci = () => {
   )
 }
 
-export default Gucci
+export default BrandDetails;

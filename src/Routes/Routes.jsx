@@ -3,8 +3,7 @@ import {
 } from "react-router-dom";
 import Home from "../Components/Home/Home";
 import AddProduct from "../Pages/Add-Product/AddProduct";
-import Adidas from "../Pages/BrandPages/Adidas";
-import Gucci from "../Pages/BrandPages/Gucci";
+import BrandDetails from "../Pages/BrandPages/BrandDetails";
 import CartPage from "../Pages/Cart/CartPage";
 import Error from "../Pages/Error/Error";
 import Login from "../Pages/Login/Login";
@@ -21,7 +20,7 @@ import Root from "../Pages/Root/Root";
         {
         path:'/',
         element: <Home/>,
-        loader: ()=>fetch('./shoes.json')
+        loader: ()=>fetch('/shoes.json')
       },
       {
         path:'/add-product',
@@ -40,30 +39,9 @@ import Root from "../Pages/Root/Root";
         element:<CartPage/>
       },
       {
-        path:'/nike',
-        element: 'nike'
-      },
-      {
-        path:'/adidas',
-        element: <Adidas/>,
-        loader:()=>fetch('./shoes.json')
-      },
-      {
-        path:'/reebok',
-        element: 'reebok'
-      },
-      {
-        path:'/puma',
-        element: 'puma'
-      },
-      {
-        path:'/gucci',
-        element: <Gucci/>,
-        loader:()=>fetch('./shoes.json')
-      },
-      {
-        path:'/lotto',
-        element: <h2>Lotto</h2>
+        path:'brand/:name',
+        element: <BrandDetails/>,
+        loader:()=>fetch('/shoes.json')
       }
     ]
     },
