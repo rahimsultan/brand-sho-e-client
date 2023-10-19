@@ -1,7 +1,8 @@
 
 import { Menu, X } from 'lucide-react'
 import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
+import useAuth from '../../Hooks/useAuth'
 
 const menuItems = [
   {
@@ -9,17 +10,21 @@ const menuItems = [
     href: '/',
   },
   {
-    name: 'About',
-    href: '#',
+    name: 'Add Product',
+    href: '/add-product',
   },
   {
-    name: 'Contact',
-    href: '#',
+    name: 'My Cart',
+    href: '/my-cart',
   },
 ]
 
+
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  // just for condition
+  const {user} = useAuth()
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -60,14 +65,21 @@ function Navbar() {
           </ul>
         </div>
         <div className="ml-2 mt-2 hidden lg:block">
-          <span className="relative inline-block">
+          {
+            !user ? <Link to={'/login'}><button
+            type="button"
+            className="rounded-md border border-black px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+          >
+            Log in
+          </button></Link> : <span className="relative inline-block">
             <img
               className="h-10 w-10 rounded-full"
-              src="https://overreacted.io/static/profile-pic-c715447ce38098828758e525a1128b87.jpg"
+              src={user.photoURL}
               alt="Dan_Abromov"
             />
             <span className="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full bg-green-600 ring-2 ring-white"></span>
           </span>
+          }
         </div>
         <div className="ml-2 lg:hidden">
           <Menu onClick={toggleMenu} className="h-6 w-6 cursor-pointer" />

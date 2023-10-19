@@ -1,0 +1,148 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "Nike Air Max 90",
+      "brand_name": "Nike",
+      "short_des": "Classic design with maximum comfort",
+      "price": 129.99,
+      "image": "https://i.ibb.co/mNC6y1k/shoes-1203-8153.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Nike Air Zoom Pegasus 38",
+      "brand_name": "Nike",
+      "short_des": "Versatile running shoes for all athletes",
+      "price": 119.99,
+      "image": "https://i.ibb.co/mqz43Dx/fashion-shoes-sneakers-1203-7529.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Nike React Element 55",
+      "brand_name": "Nike",
+      "short_des": "Modern and stylish sneakers with React technology",
+      "price": 99.99,
+      "image": "https://i.ibb.co/30zbJhx/white-vintage-view-new-shoes-1203-6515.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Adidas Ultraboost",
+      "brand_name": "Adidas",
+      "short_des": "High-performance running shoes",
+      "price": 149.99,
+      "image": "https://i.ibb.co/GtjcG74/wear-classic-black-beauty-pair-1203-6456.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Adidas Stan Smith",
+      "brand_name": "Adidas",
+      "short_des": "Classic and timeless sneakers",
+      "price": 79.99,
+      "image": "https://i.ibb.co/mBvVn8S/one-white-sneaker-shoe-isolated-white-93675-134695.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Adidas NMD R1",
+      "brand_name": "Adidas",
+      "short_des": "Urban-style sneakers with Boost technology",
+      "price": 129.99,
+      "image": "https://i.ibb.co/T8hpnNY/background-shoes-pair-men-red-1203-6407.jpg"
+    },
+    {
+      "id": 7,
+      "title": "Reebok Nano X Crossfit Shoes",
+      "brand_name": "Reebok",
+      "short_des": "Cross-training shoes for serious athletes",
+      "price": 129.99,
+      "image": "https://i.ibb.co/3dmzVMX/shoes-1203-8135.jpg"
+    },
+    {
+      "id": 8,
+      "title": "Reebok Classic Leather",
+      "brand_name": "Reebok",
+      "short_des": "Timeless leather sneakers with retro charm",
+      "price": 89.99,
+      "image": "https://i.ibb.co/JkNrnt6/sport-shoes-running-1203-7549.jpg"
+    },
+    {
+      "id": 9,
+      "title": "Reebok Sole Fury",
+      "brand_name": "Reebok",
+      "short_des": "Modern and edgy running shoes",
+      "price": 109.99,
+      "image": "https://i.ibb.co/jTRDPmh/fashion-shoes-sneakers-1203-7526.jpg"
+    },
+    {
+      "id": 10,
+      "title": "Puma RS-X Sneakers",
+      "brand_name": "Puma",
+      "short_des": "Retro-inspired chunky sneakers",
+      "price": 79.99,
+      "image": "https://i.ibb.co/jV1kkD7/shoes-1203-8149.jpg"
+    },
+    {
+      "id": 11,
+      "title": "Puma Future Rider",
+      "brand_name": "Puma",
+      "short_des": "Casual and comfortable sneakers",
+      "price": 69.99,
+      "image": "https://i.ibb.co/DpQNsZ4/leather-boots-1203-8147.jpg"
+    },
+    {
+      "id": 12,
+      "title": "Puma Clyde Court",
+      "brand_name": "Puma",
+      "short_des": "Performance basketball shoes with style",
+      "price": 109.99,
+      "image": "https://i.ibb.co/fXjrgc7/men-shoes-1203-8388.jpg"
+    },
+    {
+      "id": 13,
+      "title": "Gucci Ace Sneakers",
+      "brand_name": "Gucci",
+      "short_des": "Luxurious leather sneakers",
+      "price": 599.99,
+      "image": "https://i.ibb.co/1Jt6Jg2/men-shoes-1203-8697.jpg"
+    },
+    {
+      "id": 14,
+      "title": "Gucci Rhyton Logo Sneakers",
+      "brand_name": "Gucci",
+      "short_des": "Chunky sneakers with a bold logo",
+      "price": 699.99,
+      "image": "https://i.ibb.co/1MyHGzY/shoes-1203-8155.jpg"
+    },
+    {
+      "id": 15,
+      "title": "Gucci Screener Sneakers",
+      "brand_name": "Gucci",
+      "short_des": "Retro-style sneakers with vintage appeal",
+      "price": 799.99,
+      "image": "https://i.ibb.co/PW05k4D/men-shoes-1203-8699.jpg"
+    },
+    {
+      "id": 16,
+      "title": "Lotto Mirage 100 Tennis Shoes",
+      "brand_name": "Lotto",
+      "short_des": "High-performance tennis shoes",
+      "price": 79.99,
+      "image": "https://i.ibb.co/pzbzzFp/black-fashion-gumshoes-144627-9661.jpg"
+    },
+    {
+      "id": 17,
+      "title": "Lotto Viper Ultra Tennis Shoes",
+      "brand_name": "Lotto",
+      "short_des": "Ultra-lightweight tennis shoes for agility",
+      "price": 89.99,
+      "image": "https://i.ibb.co/Vm9r7Jt/gray-high-top-sneaker-white-53876-102243.jpg"
+    },
+    {
+      "id": 18,
+      "title": "Lotto Pro Series Tennis Shoes",
+      "brand_name": "Lotto",
+      "short_des": "Professional-grade tennis shoes for champions",
+      "price": 119.99,
+      "image": "https://i.ibb.co/ncbQFX2/sneakers-shoes-1203-8033.jpg"
+    }
+  ]
+}
