@@ -1,13 +1,14 @@
 import { updateProfile } from 'firebase/auth';
 import { ArrowRight } from 'lucide-react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../Firebase/firebase.config';
 import useAuth from '../../Hooks/useAuth';
 
 function Register() {
-
-  const {createAccount}=useAuth()
+  const {createAccount, googleLogin, LogOut} = useAuth()
   const navigate = useNavigate()
+  const [Error, setError] = useState('')
 
   const handleRegister = (e)=>{
     e.preventDefault()
@@ -19,6 +20,17 @@ function Register() {
 
     const userInfo = {name, email, photo, password}
     console.log(userInfo);
+
+    // setError('')
+
+    // showing error for the condition
+    // if(password.length < 6){
+    //   return setError('password should be 6 character')
+    // }else if(!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(password)){
+    //   return setError('special character missing')
+    // }else if(!/[A-Z]/.test(password)){
+    //   return setError('Capital Letter missing')
+    // }
 
     // create account with firebase
     createAccount(email, password)
@@ -33,6 +45,19 @@ function Register() {
     })
     .catch(error=>{
       console.log(error.message);
+    })
+  }
+
+  // create account with google
+  const handleGoogleLogin=()=>{
+    googleLogin()
+    .then(()=>{
+      // toast.success('Successfully Registered!')
+      navigate(location.state ? location.state : '/')
+       
+    })
+    .catch(error =>{
+      setErr(error.message)
     })
   }
   return (
@@ -126,6 +151,7 @@ function Register() {
                     placeholder="Password"
                     name='password'
                   ></input>
+                  <p className='mt-[2px] mb-2 text-red-600 font-semibold text-sm'>{'Error message'}</p>
                 </div>
               </div>
               <div>
@@ -141,6 +167,7 @@ function Register() {
           </form>
           <div className="mt-3 space-y-3">
             <button
+            onClick={handleGoogleLogin}
               type="button"
               className="relative inline-flex w-full items-center justify-center rounded-md border border-gray-400 bg-white px-3.5 py-2.5 font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black focus:outline-none"
             >

@@ -1,11 +1,14 @@
 import { ArrowRight } from 'lucide-react';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
 
  function Login() {
 
-  const {LogIn}= useAuth()
+  const {LogIn, googleLogin}= useAuth()
+  const navigate = useNavigate()
+  const location = useLocation()
+  const [Error, setError] = useState('')
 
   const handleLogin=(e)=>{
     e.preventDefault()
@@ -13,15 +16,43 @@ import useAuth from '../../Hooks/useAuth';
     const email = form.email.value;
     const password = form.password.value;
 
+    // setError('')
+
+    // showing error for the condition
+    // if(password.length < 6){
+    //   return setError('password should be 6 character')
+    // }else if(!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(password)){
+    //   return setError('special character missing')
+    // }else if(!/[A-Z]/.test(password)){
+    //   return setError('Capital Letter missing')
+    // }
+
     // login with firebase
     LogIn(email, password)
     .then(res=>{
       console.log(res.user);
+      // toast.success('Successfully Login!')
+      navigate(location.state ? location.state : '/')
     })
     .catch(error=>{
       console.log(error.message);
     })
   }
+
+  // handle google login
+  const handleGoogleLogin=()=>{
+    googleLogin()
+    .then(()=>{
+      // toast.success('Successfully Registered!')
+      navigate(location.state ? location.state : '/')
+       
+    })
+    .catch(error =>{
+      // setErr(error.message)
+      console.log(error);
+    })
+  }
+
   return (
     <section>
       <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
@@ -87,6 +118,7 @@ import useAuth from '../../Hooks/useAuth';
                     placeholder="Password"
                     name='password'
                   ></input>
+                  <p className='mt-[2px] mb-2 text-red-600 font-semibold text-sm'>{'Error message'}</p>
                 </div>
               </div>
               <div>
@@ -101,6 +133,7 @@ import useAuth from '../../Hooks/useAuth';
           </form>
           <div className="mt-3 space-y-3">
             <button
+            onClick={handleGoogleLogin}
               type="button"
               className="relative inline-flex w-full items-center justify-center rounded-md border border-gray-400 bg-white px-3.5 py-2.5 font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black focus:outline-none"
             >

@@ -24,7 +24,18 @@ function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   // just for condition
-  const {user} = useAuth()
+  const {user, LogOut} = useAuth()
+    // logout function
+    const handleLogout =()=>{
+      LogOut()
+      .then(()=>{
+        // toast.success('logout seccessfull');
+        console.log('logout');
+      })
+      .catch(error =>{
+        // toast.error(error.message);
+      })
+    }
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -64,21 +75,34 @@ function Navbar() {
             ))}
           </ul>
         </div>
-        <div className="ml-2 mt-2 hidden lg:block">
+        <div className="ml-2 mt-2 hidden lg:flex gap-3 items-center">
+
           {
-            !user ? <Link to={'/login'}><button
-            type="button"
-            className="rounded-md border border-black px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-          >
-            Log in
-          </button></Link> : <span className="relative inline-block">
-            <img
-              className="h-10 w-10 rounded-full"
-              src={user.photoURL}
-              alt="Dan_Abromov"
-            />
-            <span className="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full bg-green-600 ring-2 ring-white"></span>
-          </span>
+            user ?
+            <div className='flex items-center gap-3'>
+              <p className='font-bold capitalize'>{user?.displayName}</p>
+              <img
+                className="h-10 w-10 rounded-full"
+                src={user?.photoURL}
+                alt="user photo"
+              />
+              <button
+            onClick={handleLogout}
+              type="button"
+              className="rounded-md bg-m px-3 py-2 bg-[#5D12D2] text-sm font-semibold text-white shadow-sm hover:bg-[#5D12D2]/80 "
+            >
+              Log Out
+            </button>
+            </div>
+            
+             : <Link to={'/login'}>
+              <button
+              type="button"
+              className="rounded-md bg-[#5D12D2] px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#5D12D2]/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+            >
+              Sign in
+            </button>
+            </Link>
           }
         </div>
         <div className="ml-2 lg:hidden">
