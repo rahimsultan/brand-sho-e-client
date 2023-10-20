@@ -4,7 +4,7 @@ import { useLoaderData } from 'react-router-dom';
 
 const ProductDetails = () => {
     const data = useLoaderData()
-    const {_id, photo, title,price, brand, rating, email,description}=data
+    const {_id, photo, title,price, brand, rating, email,description, category}=data
   return (
     <section className="overflow-hidden">
     <div className="mx-auto max-w-5xl px-5 py-24">

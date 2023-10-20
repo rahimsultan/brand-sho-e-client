@@ -1,19 +1,20 @@
 import React from 'react'
 import InputField from '../../Components/InputFeild/InputField'
+import useAuth from '../../Hooks/useAuth'
 
 const addInfo =[
-    {
-        name:'email',
-        placeholder : 'enter email',
-        type: 'email'
-    },
+    
     {
         name:'image',
         placeholder : 'enter image url'
     },
     {
-        name:'title',
-        placeholder : 'enter product title'
+        name:'name',
+        placeholder : 'enter product name'
+    },
+    {
+        name:'brand',
+        placeholder : 'enter brand name',
     },
     {
         name:'category',
@@ -34,18 +35,22 @@ const addInfo =[
 ]
 
 const AddProduct = () => {
+
+    const {user} = useAuth()
+
     const handleAddProduct=(e)=>{
         e.preventDefault()
         const form = e.target;
-        const email = form.email.value
-        const photo = form.image.value
-        const title = form.title.value;
+
+        const image = form.image.value
+        const name = form.name.value
         const brand = form.category.value
+        const category = form.category.value;
         const price = form.price.value
         const description = form.shortDes.value
         const rating = form.rating.value
 
-        const prodInfo ={email,photo,title,brand,price,description,rating}
+        const prodInfo ={email: user.email,photo:image,title:name,brand,price,description,rating, category}
 
         console.log(prodInfo);
         fetch('http://localhost:5000/products',{

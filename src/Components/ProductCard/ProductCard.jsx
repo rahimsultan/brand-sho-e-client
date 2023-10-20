@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const ProductCard = ({product}) => {
     const {_id,title, brand, 
-      description, price, photo} =product
+      description, price, photo, category} =product
     // console.log(product);
 
     const [cart, setCart]= useState([])
@@ -35,17 +35,19 @@ description}
         </span>
       </div>
       <div className='flex items-center gap-3 justify-between'>
+      <Link to={`/update-product/${_id}`}>
       <button
       onClick={()=>handleAddToCart(_id)}
         type="button"
-        className="mt-4 rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+        className="mt-4 rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 "
       >
-        Add to Cart
+        Update
       </button>
+      </Link>
       <Link to={`/${brand}/${_id}`}>
       <button
         type="button"
-        className="mt-4 rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+        className="mt-4 rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 "
       >
         See Details
       </button>
