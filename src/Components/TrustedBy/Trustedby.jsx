@@ -7,7 +7,7 @@ const Trustedby = () => {
         <h2 className='font-bold text-3xl'>Trusted by creators worldwide</h2>
         <p className='font-semibold text-slate-500'>Lorem ipsum dolor sit amet consect adipisicing possimus.</p>
         </div>
-        <div className='grid grid-cols-4 gap-[2px] rounded-md overflow-hidden'>
+        <div className='grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4 gap-[2px] text-center rounded-md overflow-hidden'>
             <div className='bg-slate-200 p-5 grid place-items-center'>
                 <h2 className='font-bold text-2xl'>500+</h2>
                 <p className='text-slate-500 font-semibold'>Active customer on the platform</p>

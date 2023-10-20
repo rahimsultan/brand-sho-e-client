@@ -12,8 +12,8 @@ const Home = () => {
     <div className='max-w-7xl lg:px-8 px-5 mx-auto'>
       <HomeBanner/>
       <Brands/>
-      <Trustedby/>
       <NewsLetter/>
+      <Trustedby/>
     </div>
   )
 }

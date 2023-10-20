@@ -36,7 +36,7 @@ const category =[
 const Brands = () => {
 
   return (
-    <div className='grid grid-cols-3 gap-[2px] rounded-lg overflow-hidden'>
+    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[2px] rounded-lg overflow-hidden'>
         {
             category.map(cat=>{
                 return (
