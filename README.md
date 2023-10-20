@@ -1,8 +1,16 @@
-# React + Vite
+# Brand Shop Using React
+live Link: https://techno-347de.web.app/
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Some Feature of My Website
+
+- Login And Registration using Firebase
+- Private Route Without Login You can't Access Those Route
+- Add Product Option
+- Update Product Info Realtime Database
+- add To Cart Product
+- Delete From Add To Cart
+- Mobile And Tablet Responsive
+
+![screencapture-techno-347de-web-app-2023-10-20-18_14_19](https://github.com/programming-hero-web-course-4/b8a10-brandshop-client-side-rahimsultan/assets/68680948/48205c34-42cf-45f5-832f-9fa960bea28f)
