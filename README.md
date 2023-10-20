@@ -1,5 +1,5 @@
 # Brand Shop Using React
-live Link : [Demo]([https://babeljs.io/](https://techno-347de.web.app/))
+live Link: https://techno-347de.web.app/
 
 
 
