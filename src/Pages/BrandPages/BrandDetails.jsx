@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useLoaderData, useLocation } from 'react-router-dom';
+import React from 'react';
+import { useLoaderData } from 'react-router-dom';
 import ProductCard from '../../Components/ProductCard/ProductCard';
 
 // Import Swiper React components
@@ -14,26 +14,12 @@ import { Navigation, Pagination } from 'swiper/modules';
 
 const BrandDetails = () => {
 
-    const [products, setProducts] = useState([])
-    const [filteredData, setFilteredData] = useState([])
 
     const data = useLoaderData()
 
-    const root = useLocation()
-    const path = root.pathname.replace('/brand/', '')
-
-    useEffect(()=>{
-        setProducts(data.products)
-
-        const find = products.filter(product=> product.brand_name.includes(path))
-        setFilteredData(find)
-    },[products])
-
-    console.log(path);
-
   return (
     <div className='max-w-7xl mx-auto px-5 lg:px-8'>
-        <h2 className='text-4xl font-bold text-center my-8'>Welcome to {path} Page</h2>
+        <h2 className='text-4xl font-bold text-center my-8'>Welcome to Page</h2>
         <div>
         <Swiper
         slidesPerView={1}
@@ -63,7 +49,7 @@ const BrandDetails = () => {
         </div>
         <div className='grid md:grid-cols-2 lg:gap-20 my-10 gap-5 grid-cols-1 lg:grid-cols-3'>
             {
-                filteredData.map(product=> <ProductCard key={product.id} product={product}/>)
+                data.map(product=> <ProductCard key={product._id} product={product}/>)
             }
         </div>
     </div>

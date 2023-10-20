@@ -15,7 +15,7 @@ const Home = () => {
       <Brands/>
       <div className='grid grid-cols-4 gap-5 my-10'>
         {
-          data.products.map(product=><ProductCard key={product.id} product={product}/>)
+          data.map(product=><ProductCard key={product._id} product={product}/>)
         }
       </div>
       <Trustedby/>

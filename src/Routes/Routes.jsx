@@ -7,6 +7,7 @@ import BrandDetails from "../Pages/BrandPages/BrandDetails";
 import CartPage from "../Pages/Cart/CartPage";
 import Error from "../Pages/Error/Error";
 import Login from "../Pages/Login/Login";
+import ProductDetails from "../Pages/ProductDeatils/ProductDetails";
 import Register from "../Pages/Register/Register";
 import Root from "../Pages/Root/Root";
 
@@ -20,7 +21,7 @@ import Root from "../Pages/Root/Root";
         {
         path:'/',
         element: <Home/>,
-        loader: ()=>fetch('/shoes.json')
+        loader: ()=>fetch('http://localhost:5000/products')
       },
       {
         path:'/add-product',
@@ -39,9 +40,14 @@ import Root from "../Pages/Root/Root";
         element:<CartPage/>
       },
       {
-        path:'brand/:name',
+        path:'/brand/:name',
         element: <BrandDetails/>,
-        loader:()=>fetch('/shoes.json')
+        loader:({params})=>fetch(`http://localhost:5000/product/${params.name}`)
+      },
+      {
+        path:'/:brand/:id',
+        element:<ProductDetails/>,
+        loader:({params})=>fetch(`http://localhost:5000/products/${params.id}`)
       }
     ]
     },

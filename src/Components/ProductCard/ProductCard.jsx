@@ -1,19 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const ProductCard = ({product}) => {
-    const {title, brand_name, short_des, price, image} =product
+    const {_id,title, brand, 
+      description, price, photo} =product
     // console.log(product);
-  return (
+
+    const [cart, setCart]= useState([])
+    const handleAddToCart=id=>{
+      setCart([...cart, id])
+    }
+
+    // console.log(cart);
+
+    return (
     <div className="rounded-md border">
     <img
-      src={image}
+      src={photo}
       alt="shoes"
       className="aspect-[16/9] w-full rounded-md md:aspect-auto md:h-[300px] lg:h-[200px]"
     />
     <div className="p-4">
       <h1 className="inline-flex items-center text-lg font-semibold">{title}</h1>
       <p className="mt-3 text-sm text-gray-600">
-        {short_des}
+        {
+description}
       </p>
 
 
@@ -23,12 +34,23 @@ const ProductCard = ({product}) => {
           ${price}
         </span>
       </div>
+      <div className='flex items-center gap-3 justify-between'>
       <button
+      onClick={()=>handleAddToCart(_id)}
         type="button"
-        className="mt-4 w-full rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+        className="mt-4 rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
       >
         Add to Cart
       </button>
+      <Link to={`/${brand}/${_id}`}>
+      <button
+        type="button"
+        className="mt-4 rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+      >
+        See Details
+      </button>
+      </Link>
+      </div>
     </div>
   </div>
   )

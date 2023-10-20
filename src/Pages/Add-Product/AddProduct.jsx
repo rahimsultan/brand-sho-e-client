@@ -59,6 +59,7 @@ const AddProduct = () => {
         .then(data=> {
             if(data.insertedId){
                 alert('product added')
+                // form.reset()
             }
             console.log(data)})
     }
