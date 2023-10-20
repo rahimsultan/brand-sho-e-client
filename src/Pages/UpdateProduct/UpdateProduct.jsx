@@ -4,7 +4,7 @@ import { useLoaderData } from "react-router-dom";
 const UpdateProduct = () => {
     const data = useLoaderData()
     // const {image, name, brand, category, price,rating }= data
-    const {photo, title, brand, category, price,rating }= data
+    const {_id,photo, title, brand, category, price,rating }= data
 
     const handleProductUpdate=(e)=>{
         e.preventDefault()
@@ -19,7 +19,19 @@ const UpdateProduct = () => {
         const rating = form.rating.value
 
 
-        const prodInfo ={photo:image,title:name,brand,price,rating, category}
+        const prodInfo ={"photo":image,"title":name,brand,price,rating, category}
+
+        fetch(`http://localhost:5000/products/${_id}`,{
+            method:"PUT",
+          headers:{
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(prodInfo)
+        })
+        .then(res=>res.json())
+        .then(data=> {
+            console.log(data)
+        })
     }
   return (
     <div className='max-w-7xl mx-auto lg:px-7 flex items-center justify-center px-5 md:my-20 my-5'>

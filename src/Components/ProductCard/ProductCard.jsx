@@ -1,17 +1,11 @@
-import React, { useState } from 'react';
+import { Star } from 'lucide-react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const ProductCard = ({product}) => {
     const {_id,title, brand, 
-      description, price, photo, category} =product
+      description, price, photo, category, rating} =product
     // console.log(product);
-
-    const [cart, setCart]= useState([])
-    const handleAddToCart=id=>{
-      setCart([...cart, id])
-    }
-
-    // console.log(cart);
 
     return (
     <div className="rounded-md border">
@@ -27,17 +21,35 @@ const ProductCard = ({product}) => {
 description}
       </p>
 
+      <div className="my-4 flex items-center">
+            <span className="flex items-center space-x-1">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} size={16} className="text-yellow-500" />
+              ))}
+              <span className="ml-3 inline-block text-xs font-semibold">{rating} Ratings</span>
+            </span>
+          </div>
+
 
       <div className="mt-5 flex items-center space-x-2">
+        <div className='flex items-center space-x-2'>
         <span className="block text-sm font-semibold">Price : </span>
         <span className="block cursor-pointer rounded-md border border-gray-300 p-1 px-2 text-xs font-medium">
           ${price}
         </span>
+        </div>
+        <div className='flex items-center space-x-2'>
+        <span className="block text-sm font-semibold">Category : </span>
+        <span className="block cursor-pointer rounded-md border border-gray-300 p-1 px-2 text-xs font-medium">
+          {category ? category : 'not updated'}
+        </span>
+        </div>
+        
       </div>
+      
       <div className='flex items-center gap-3 justify-between'>
       <Link to={`/update-product/${_id}`}>
       <button
-      onClick={()=>handleAddToCart(_id)}
         type="button"
         className="mt-4 rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 "
       >

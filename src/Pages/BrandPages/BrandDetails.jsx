@@ -32,18 +32,15 @@ const BrandDetails = () => {
         modules={[Pagination, Navigation]}
         className="mySwiper"
       >
-        <SwiperSlide>
-            <img className='w-full' src="https://soliloquywp.com/wp-content/uploads/2019/04/nb_esc_cover.jpg" alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-            <img className='w-full' src="https://res.cloudinary.com/dmko6hpul/image/upload/v1568068457/one_kaxpwq.jpg" alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-            <img className='w-full' src="https://www.simplilearn.com/ice9/free_resources_article_thumb/html_image_slider.jpg" alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-            <img className='w-full' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJfLAAWLpAXwNKMbj2uI7ecqbNJ6ch1jdBJ4EjRQTfoBRHim_YrE5GVn6SI1FQB5Krzb8&usqp=CAU" alt="" />
-        </SwiperSlide>
+        {
+          data.map(pro=> {
+            return (
+              <SwiperSlide key={pro._id}>
+                  <img className='w-full' src={pro.photo} alt="" />
+              </SwiperSlide>
+            )
+          })
+        }
 
       </Swiper>
         </div>

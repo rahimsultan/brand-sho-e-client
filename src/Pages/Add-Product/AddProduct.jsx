@@ -44,13 +44,13 @@ const AddProduct = () => {
 
         const image = form.image.value
         const name = form.name.value
-        const brand = form.category.value
+        const brand = form.brand.value
         const category = form.category.value;
         const price = form.price.value
         const description = form.shortDes.value
         const rating = form.rating.value
 
-        const prodInfo ={email: user.email,photo:image,title:name,brand,price,description,rating, category}
+        const prodInfo ={photo:image,title:name,brand,price,description,rating, category}
 
         console.log(prodInfo);
         fetch('http://localhost:5000/products',{
