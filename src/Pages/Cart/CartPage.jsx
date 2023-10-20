@@ -1,74 +1,67 @@
 import { Heart, Trash } from 'lucide-react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import { Link, useLoaderData } from 'react-router-dom';
+import useAuth from '../../Hooks/useAuth';
 
-const products = [
-  {
-    id: 1,
-    name: 'Nike Air Force 1 07 LV8',
-    href: '#',
-    price: '₹47,199',
-    originalPrice: '₹48,900',
-    discount: '5% Off',
-    color: 'Orange',
-    size: '8 UK',
-    imageSrc:
-      'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/54a510de-a406-41b2-8d62-7f8c587c9a7e/air-force-1-07-lv8-shoes-9KwrSk.png',
-  },
-  {
-    id: 2,
-    name: 'Nike Blazer Low 77 SE',
-    href: '#',
-    price: '₹1,549',
-    originalPrice: '₹2,499',
-    discount: '38% off',
-    color: 'White',
-    leadTime: '3-4 weeks',
-    size: '8 UK',
-    imageSrc:
-      'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/e48d6035-bd8a-4747-9fa1-04ea596bb074/blazer-low-77-se-shoes-0w2HHV.png',
-  },
-  {
-    id: 3,
-    name: 'Nike Air Max 90',
-    href: '#',
-    price: '₹2219 ',
-    originalPrice: '₹999',
-    discount: '78% off',
-    color: 'Black',
-    imageSrc:
-      'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/fd17b420-b388-4c8a-aaaa-e0a98ddf175f/dunk-high-retro-shoe-DdRmMZ.png',
-  },
-]
 
 export function CartPage() {
+
+  const {user}= useAuth()
+
+  const userEmail = user.email;
+
+  const data = useLoaderData()
+  const [products, setProducts] = useState([])
+
+  useEffect(()=>{
+    const fil = data.filter(d=> d.email === userEmail)
+    setProducts(fil)
+  },[])
+
+
+  const handleDelete =(id)=>{
+
+    fetch(`http://localhost:5000/cart/products/${id}`,{
+      method:"DELETE",
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      // console.log(data);
+      if(data.deletedCount >0){
+        toast.success('Deleted SuccessFull')
+        const remaining = products.filter(product=> product._id !== id)
+        setProducts(remaining)
+      }
+    })
+  }
+  // console.log(products);
   return (
     <div className="mx-auto flex max-w-3xl flex-col space-y-4 p-6 px-2 sm:p-10 sm:px-2">
       <h2 className="text-3xl font-bold">Your cart</h2>
-      <p className="mt-3 text-sm font-medium text-gray-700">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum eius repellat ipsam, sit
-        praesentium incidunt.
-      </p>
+      {
+        products.length !== 0 ?
+      
       <ul className="flex flex-col divide-y divide-gray-200">
         {products.map((product) => (
-          <li key={product.id} className="flex flex-col py-6 sm:flex-row sm:justify-between">
-            <div className="flex w-full space-x-2 sm:space-x-4">
+          <li key={product._id} className="flex flex-col py-6 sm:flex-row sm:justify-between">
+            <div className="flex w-full space-x-2 sm:space-x-4 items-center">
               <img
                 className="h-20 w-20 flex-shrink-0 rounded object-contain outline-none dark:border-transparent sm:h-32 sm:w-32"
-                src={product.imageSrc}
-                alt={product.name}
+                src={product.product.photo}
+                alt={product.product.title}
               />
-              <div className="flex w-full flex-col justify-between pb-4">
+              <div className="flex w-full flex-col gap-4 pb-4">
                 <div className="flex w-full justify-between space-x-2 pb-2">
                   <div className="space-y-1">
-                    <h3 className="text-lg font-semibold leading-snug sm:pr-8">{product.name}</h3>
-                    <p className="text-sm">{product.color}</p>
+                    <h3 className="text-lg font-semibold leading-snug sm:pr-8">{product.product.title}</h3>
                   </div>
                   <div className="text-right">
-                    <p className="text-lg font-semibold">{product.price}</p>
+                    <p className="text-lg font-semibold">${product.product.price}</p>
                   </div>
                 </div>
                 <div className="flex divide-x text-sm">
-                  <button type="button" className="flex items-center space-x-2 px-2 py-1 pl-0">
+                  <button onClick={()=>handleDelete(product._id)} type="button" className="flex items-center space-x-2 px-2 py-1 pl-0">
                     <Trash size={16} />
                     <span>Remove</span>
                   </button>
@@ -81,20 +74,23 @@ export function CartPage() {
             </div>
           </li>
         ))}
-      </ul>
+      </ul> : <h2 className='text-center text-4xl font-bold my-5 md:my-8'>Opps!!! Your Cart Is Empty</h2>
+      }
       <div className="space-y-1 text-right">
         <p>
           Total amount:
-          <span className="font-semibold"> ₹48,967</span>
+          <span className="font-semibold"> ${products.reduce((prev, next)=> prev + parseFloat(next.product.price),0).toFixed(2)}</span>
         </p>
       </div>
       <div className="flex justify-end space-x-4">
+        <Link to={'/'}>
         <button
           type="button"
           className="rounded-md border border-black px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
         >
           Back to shop
         </button>
+        </Link>
         <button
           type="button"
           className="rounded-md border border-black px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"

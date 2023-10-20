@@ -1,7 +1,8 @@
-import React from 'react'
+
 import { Navigate, useLocation } from 'react-router-dom'
 import { FadeLoader } from 'react-spinners'
-import useAuth from '../Hooks/useAuth'
+import useAuth from '../../Hooks/useAuth'
+
 
 
 const PrivateRoute = ({children}) => {
@@ -17,7 +18,7 @@ const PrivateRoute = ({children}) => {
     if(user){
         return children
     }
-  return <Navigate state={location.pathname} to={'/signin'}/>
+  return <Navigate state={location.pathname} to={'/login'}/>
 }
 
 export default PrivateRoute

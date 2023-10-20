@@ -1,6 +1,7 @@
 import { updateProfile } from 'firebase/auth';
 import { ArrowRight } from 'lucide-react';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../Firebase/firebase.config';
 import useAuth from '../../Hooks/useAuth';
@@ -19,32 +20,35 @@ function Register() {
     const password = form.password.value;
 
     const userInfo = {name, email, photo, password}
-    console.log(userInfo);
 
-    // setError('')
+    setError('')
 
     // showing error for the condition
-    // if(password.length < 6){
-    //   return setError('password should be 6 character')
-    // }else if(!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(password)){
-    //   return setError('special character missing')
-    // }else if(!/[A-Z]/.test(password)){
-    //   return setError('Capital Letter missing')
-    // }
+
+    if(password.length < 6){
+      return setError('password should be 6 character')
+    }else if(!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(password)){
+      return setError('special character missing')
+    }else if(!/[A-Z]/.test(password)){
+      return setError('Capital Letter missing')
+    }
 
     // create account with firebase
     createAccount(email, password)
     .then(res=>{
       updateProfile(auth.currentUser, {
-        displayName: name, photoURL: photo
+        displayName: userInfo.name, photoURL: userInfo.photo
       })
       .then(()=> console.log('profile update'))
       .catch(error=> console.log(error.message))
       console.log(res.user);
-      navigate('/')
+      toast.success('Account Creation Successfull!')
+      LogOut()
+      navigate('/login')
     })
     .catch(error=>{
       console.log(error.message);
+      setError(error.message)
     })
   }
 
@@ -52,12 +56,12 @@ function Register() {
   const handleGoogleLogin=()=>{
     googleLogin()
     .then(()=>{
-      // toast.success('Successfully Registered!')
+      toast.success('Successfully Registered!')
       navigate(location.state ? location.state : '/')
        
     })
     .catch(error =>{
-      setErr(error.message)
+      setError(error.message)
     })
   }
   return (
@@ -151,7 +155,7 @@ function Register() {
                     placeholder="Password"
                     name='password'
                   ></input>
-                  <p className='mt-[2px] mb-2 text-red-600 font-semibold text-sm'>{'Error message'}</p>
+                  <p className='mt-[2px] mb-2 text-red-600 font-semibold text-sm'>{Error}</p>
                 </div>
               </div>
               <div>

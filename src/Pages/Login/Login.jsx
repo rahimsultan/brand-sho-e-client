@@ -1,5 +1,6 @@
 import { ArrowRight } from 'lucide-react';
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
 
@@ -16,26 +17,27 @@ import useAuth from '../../Hooks/useAuth';
     const email = form.email.value;
     const password = form.password.value;
 
-    // setError('')
+    setError('')
 
     // showing error for the condition
-    // if(password.length < 6){
-    //   return setError('password should be 6 character')
-    // }else if(!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(password)){
-    //   return setError('special character missing')
-    // }else if(!/[A-Z]/.test(password)){
-    //   return setError('Capital Letter missing')
-    // }
+    if(password.length < 6){
+      return setError('password should be 6 character')
+    }else if(!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(password)){
+      return setError('special character missing')
+    }else if(!/[A-Z]/.test(password)){
+      return setError('Capital Letter missing')
+    }
 
     // login with firebase
     LogIn(email, password)
     .then(res=>{
       console.log(res.user);
-      // toast.success('Successfully Login!')
+      toast.success('Successfully Login!')
       navigate(location.state ? location.state : '/')
     })
     .catch(error=>{
       console.log(error.message);
+      setError(error.message)
     })
   }
 
@@ -43,12 +45,12 @@ import useAuth from '../../Hooks/useAuth';
   const handleGoogleLogin=()=>{
     googleLogin()
     .then(()=>{
-      // toast.success('Successfully Registered!')
+      toast.success('Successfully Registered!')
       navigate(location.state ? location.state : '/')
        
     })
     .catch(error =>{
-      // setErr(error.message)
+      setError(error.message)
       console.log(error);
     })
   }
@@ -114,11 +116,11 @@ import useAuth from '../../Hooks/useAuth';
                 <div className="mt-2">
                   <input
                     className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                    type="password"
+                    type="text"
                     placeholder="Password"
                     name='password'
                   ></input>
-                  <p className='mt-[2px] mb-2 text-red-600 font-semibold text-sm'>{'Error message'}</p>
+                  <p className='mt-[2px] mb-2 text-red-600 font-semibold text-sm'>{Error}</p>
                 </div>
               </div>
               <div>

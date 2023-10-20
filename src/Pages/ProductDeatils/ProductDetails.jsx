@@ -1,10 +1,34 @@
 import { Star } from 'lucide-react';
 import React from 'react';
+import toast from 'react-hot-toast';
 import { useLoaderData } from 'react-router-dom';
+import useAuth from '../../Hooks/useAuth';
 
 const ProductDetails = () => {
     const data = useLoaderData()
-    const {_id, photo, title,price, brand, rating, email,description, category}=data
+    const {_id, photo, title,price, brand, rating,description, category}=data
+
+    const {user} = useAuth()
+    // console.log(data);
+
+  const handleAddtoCart=()=>{
+    const cart = {product: data, email: user.email}
+
+    fetch('http://localhost:5000/cart/products',{
+      method:"POST",
+      headers:{
+        'content-type':"application/json"
+      },
+      body: JSON.stringify(cart)
+    })
+    .then(res=> res.json())
+    .then(data=>{
+      if(data.insertedId){
+        toast.success('Product Added')
+      }
+    })
+  }
+
   return (
     <section className="overflow-hidden">
     <div className="mx-auto max-w-5xl px-5 py-24">
@@ -39,6 +63,7 @@ const ProductDetails = () => {
           <div className="flex items-center justify-between">
             <span className="title-font text-xl font-bold text-gray-900">${price}</span>
             <button
+            onClick={handleAddtoCart}
               type="button"
               className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
             >
