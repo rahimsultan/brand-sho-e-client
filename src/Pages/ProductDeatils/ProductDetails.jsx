@@ -14,7 +14,7 @@ const ProductDetails = () => {
   const handleAddtoCart=()=>{
     const cart = {product: data, email: user.email}
 
-    fetch('https://assignment-server-ra8m92gn1-rahimsultans-projects.vercel.app/cart/products',{
+    fetch('https://assignment-server-sigma.vercel.app/cart/products',{
       method:"POST",
       headers:{
         'content-type':"application/json"

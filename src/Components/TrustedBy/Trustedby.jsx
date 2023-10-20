@@ -5,7 +5,7 @@ const Trustedby = () => {
     <div className='border p-10 my-10 rounded-md'>
         <div className='text-center my-8'>
         <h2 className='font-bold text-3xl'>Trusted by creators worldwide</h2>
-        <p className='font-semibold text-slate-500'>Lorem ipsum dolor sit amet consect adipisicing possimus.</p>
+        <p className='font-semibold text-slate-500'>We Have a reputation may be you wanna see</p>
         </div>
         <div className='grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4 gap-[2px] text-center rounded-md overflow-hidden'>
             <div className='bg-slate-200 p-5 grid place-items-center'>

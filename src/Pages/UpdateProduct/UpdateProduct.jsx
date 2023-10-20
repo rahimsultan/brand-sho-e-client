@@ -22,7 +22,7 @@ const UpdateProduct = () => {
 
         const prodInfo ={"photo":image,"title":name,brand,price,rating, category}
 
-        fetch(`https://assignment-server-ra8m92gn1-rahimsultans-projects.vercel.app/products/${_id}`,{
+        fetch(`https://assignment-server-sigma.vercel.app/products/${_id}`,{
             method:"PUT",
           headers:{
             'content-type': 'application/json'

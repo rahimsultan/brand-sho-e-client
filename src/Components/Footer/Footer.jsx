@@ -42,7 +42,7 @@ function Footer() {
          <img src="https://i.ibb.co/WDPb7Jk/newlogo.png" alt="" />
         </div>
         <div className="mt-4 md:mt-0">
-          <p className="text-sm font-medium text-gray-500">© 2023 DevUI. All rights reserved.</p>
+          <p className="text-sm font-medium text-gray-500">© 2023 Rahim. All rights reserved.</p>
         </div>
       </div>
     </footer>

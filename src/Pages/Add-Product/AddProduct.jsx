@@ -54,7 +54,7 @@ const AddProduct = () => {
         const prodInfo ={photo:image,title:name,brand,price,description,rating, category}
 
         console.log(prodInfo);
-        fetch('https://assignment-server-ra8m92gn1-rahimsultans-projects.vercel.app/products',{
+        fetch('https://assignment-server-sigma.vercel.app/products',{
             method:"POST",
           headers:{
             'content-type': 'application/json'
