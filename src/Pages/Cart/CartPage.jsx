@@ -22,7 +22,7 @@ export function CartPage() {
 
   const handleDelete =(id)=>{
 
-    fetch(`http://localhost:5000/cart/products/${id}`,{
+    fetch(`https://assignment-server-ra8m92gn1-rahimsultans-projects.vercel.app/cart/products/${id}`,{
       method:"DELETE",
     })
     .then(res=>res.json())

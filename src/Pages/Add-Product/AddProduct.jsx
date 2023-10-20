@@ -1,4 +1,5 @@
 import React from 'react'
+import toast from 'react-hot-toast'
 import InputField from '../../Components/InputFeild/InputField'
 import useAuth from '../../Hooks/useAuth'
 
@@ -53,7 +54,7 @@ const AddProduct = () => {
         const prodInfo ={photo:image,title:name,brand,price,description,rating, category}
 
         console.log(prodInfo);
-        fetch('http://localhost:5000/products',{
+        fetch('https://assignment-server-ra8m92gn1-rahimsultans-projects.vercel.app/products',{
             method:"POST",
           headers:{
             'content-type': 'application/json'
@@ -63,7 +64,7 @@ const AddProduct = () => {
         .then(res=>res.json())
         .then(data=> {
             if(data.insertedId){
-                alert('product added')
+                toast.success('product added')
                 // form.reset()
             }
             console.log(data)})

@@ -23,7 +23,7 @@ import PrivateRoute from "./PrivateRoutes/PrivateRoute";
         {
         path:'/',
         element: <Home/>,
-        loader: ()=>fetch('http://localhost:5000/products')
+        loader: ()=>fetch('https://assignment-server-ra8m92gn1-rahimsultans-projects.vercel.app/products')
       },
       {
         path:'/add-product',
@@ -40,22 +40,22 @@ import PrivateRoute from "./PrivateRoutes/PrivateRoute";
       {
         path:'/my-cart',
         element:<PrivateRoute><CartPage/></PrivateRoute>,
-        loader: ()=>fetch('http://localhost:5000/cart/products')
+        loader: ()=>fetch('https://assignment-server-ra8m92gn1-rahimsultans-projects.vercel.app/cart/products')
       },
       {
         path:'/brand/:name',
         element: <PrivateRoute><BrandDetails/></PrivateRoute>,
-        loader:({params})=>fetch(`http://localhost:5000/product/${params.name}`)
+        loader:({params})=>fetch(`https://assignment-server-ra8m92gn1-rahimsultans-projects.vercel.app/product/${params.name}`)
       },
       {
         path:'/:brand/:id',
         element:<PrivateRoute><ProductDetails/></PrivateRoute>,
-        loader:({params})=>fetch(`http://localhost:5000/products/${params.id}`)
+        loader:({params})=>fetch(`https://assignment-server-ra8m92gn1-rahimsultans-projects.vercel.app/products/${params.id}`)
       },
       {
         path:'/update-product/:productId',
         element:<PrivateRoute><UpdateProduct/></PrivateRoute>,
-        loader:({params})=>fetch(`http://localhost:5000/products/${params.productId}`)
+        loader:({params})=>fetch(`https://assignment-server-ra8m92gn1-rahimsultans-projects.vercel.app/products/${params.productId}`)
       }
     ]
     },

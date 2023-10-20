@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
 
 
@@ -21,7 +22,7 @@ const UpdateProduct = () => {
 
         const prodInfo ={"photo":image,"title":name,brand,price,rating, category}
 
-        fetch(`http://localhost:5000/products/${_id}`,{
+        fetch(`https://assignment-server-ra8m92gn1-rahimsultans-projects.vercel.app/products/${_id}`,{
             method:"PUT",
           headers:{
             'content-type': 'application/json'
@@ -30,7 +31,10 @@ const UpdateProduct = () => {
         })
         .then(res=>res.json())
         .then(data=> {
-            console.log(data)
+            if(data.modifiedCount > 0){
+                toast.success('Info Updated SuccessFull')
+            }
+            // console.log(data)
         })
     }
   return (
