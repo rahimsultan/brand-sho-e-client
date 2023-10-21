@@ -65,7 +65,7 @@ const AddProduct = () => {
         .then(data=> {
             if(data.insertedId){
                 toast.success('product added')
-                // form.reset()
+                form.reset()
             }
             console.log(data)})
     }

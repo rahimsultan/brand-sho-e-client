@@ -33,6 +33,7 @@ const UpdateProduct = () => {
         .then(data=> {
             if(data.modifiedCount > 0){
                 toast.success('Info Updated SuccessFull')
+                // form.reset()
             }
             // console.log(data)
         })
