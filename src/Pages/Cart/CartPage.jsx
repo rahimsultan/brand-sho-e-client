@@ -1,7 +1,7 @@
 import { Heart, Trash } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
 import { Link, useLoaderData } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import useAuth from '../../Hooks/useAuth';
 
 
@@ -22,16 +22,33 @@ export function CartPage() {
 
   const handleDelete =(id)=>{
 
-    fetch(`https://assignment-server-sigma.vercel.app/cart/products/${id}`,{
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`https://assignment-server-sigma.vercel.app/cart/products/${id}`,{
       method:"DELETE",
     })
     .then(res=>res.json())
     .then(data=>{
       // console.log(data);
       if(data.deletedCount >0){
-        toast.success('Deleted SuccessFull')
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
         const remaining = products.filter(product=> product._id !== id)
         setProducts(remaining)
+      }
+    })
+        
       }
     })
   }

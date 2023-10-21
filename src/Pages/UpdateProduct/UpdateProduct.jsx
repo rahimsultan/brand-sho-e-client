@@ -14,7 +14,7 @@ const UpdateProduct = () => {
 
         const image = form.image.value
         const name = form.name.value
-        const brand = form.brand.value
+        const brand = form.brand.value.toLowerCase()
         const category = form.category.value;
         const price = form.price.value
         const rating = form.rating.value

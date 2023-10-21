@@ -45,7 +45,7 @@ import PrivateRoute from "./PrivateRoutes/PrivateRoute";
       {
         path:'/brand/:name',
         element: <PrivateRoute><BrandDetails/></PrivateRoute>,
-        loader:({params})=>fetch(`https://assignment-server-sigma.vercel.app/product/${params.name}`)
+        loader:({params})=>fetch(`https://assignment-server-sigma.vercel.app/product/${params.name.toLowerCase()}`)
       },
       {
         path:'/:brand/:id',
